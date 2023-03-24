@@ -1,11 +1,17 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import { useUserContext } from '@/contexts/userContext'
+import UserList from '@/components/User/UserList'
+import Loader from '@/components/common/Loader'
+import Footer from '@/components/common/Footer'
+import Title from '@/components/common/Title'
+import UserPagination from '@/components/User/UserPagination'
+import SearchInput from '@/components/SearchInput'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const { users } = useUserContext()
   return (
     <>
       <Head>
@@ -14,9 +20,13 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className='flex w-screen h-screen justify-center items-center'>
-        Name:
-        <input type="text" />
+      <main className='flex w-screen h-screen justify-center items-center flex-col relative bg-background'>
+        <Title></Title>
+        <SearchInput></SearchInput>
+        <Loader></Loader>
+        <UserList users={users}></UserList>
+        <UserPagination></UserPagination>
+        <Footer></Footer>
       </main>
     </>
   )

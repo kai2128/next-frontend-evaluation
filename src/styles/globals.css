@@ -5,3 +5,7 @@
 button, input{
   @apply outline-none;
 }
+
+.link{
+  @apply text-gray-500 underline underline-offset-4 hover:text-black transition-colors;
+}
